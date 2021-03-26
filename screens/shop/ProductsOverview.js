@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
+import { HeaderTitle } from 'react-navigation-stack';
 import { useSelector } from 'react-redux';
 
 const ProductsOverviewScreen = props => {
@@ -12,5 +13,9 @@ const ProductsOverviewScreen = props => {
     />
     );
 };
+
+ProductsOverviewScreen.navigationOptions = (
+    HeaderTitle:''
+);
 
 export default ProductsOverviewScreen;
