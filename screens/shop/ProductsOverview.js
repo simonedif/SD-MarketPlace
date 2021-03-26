@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux';
 
 const ProductsOverviewScreen = props => {
     const products = useSelector(state => state.products.avaiableProducts)
-    return <FlatList 
+    return (
+    <FlatList 
         data={products} 
         keyExtractor={item => item.id} 
         keyExtractor={itemData => <Text>itemData.item.title</Text>}
-    />;
+    />
+    );
 };
 
 export default ProductsOverviewScreen;
