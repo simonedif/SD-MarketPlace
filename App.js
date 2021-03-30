@@ -1,4 +1,7 @@
+import { ShopNavigator } from './navigation/ShopNavigator';
 
+export default ShopNavigator
+  
 
 
 
