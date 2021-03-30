@@ -1,6 +1,7 @@
-import { ShopNavigator } from './navigation/ShopNavigator';
+import { ProductsNavigator } from './navigation/ShopNavigator';
 
-export default ShopNavigator
+
+export default ProductsNavigator
   
 
 

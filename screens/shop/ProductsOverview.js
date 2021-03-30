@@ -1,6 +1,15 @@
-// import React from 'react';
-// import { FlatList, Text } from 'react-native';
-// import { useSelector } from 'react-redux';
+import React from 'react';
+import { FlatList, Text, View } from 'react-native';
+//import { useSelector } from 'react-redux';
+
+
+const ProductsOverviewScreen = () => {
+    return (
+        <View>
+            <Text>I am prod</Text> 
+        </View>
+    );
+};
 
 // const ProductsOverviewScreen = props => {
 //   const products = useSelector(state => state.products.availableProducts);
@@ -17,4 +26,4 @@
 //   headerTitle: 'All Products'
 // };
 
-// export default ProductsOverviewScreen;
+export default ProductsOverviewScreen;
