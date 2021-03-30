@@ -1,12 +1,16 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, Button, StyleSheet } from 'react-native';
 //import { useSelector } from 'react-redux';
 
 
-const ProductsOverviewScreen = () => {
+const ProductsOverviewScreen = ({navigation}) => {
     return (
         <View>
             <Text>I am prod</Text> 
+            <Button 
+                title='Go to register'
+                onPress={() => {navigation.navigate('CartScreen')}}
+                />
         </View>
     );
 };
@@ -25,5 +29,9 @@ const ProductsOverviewScreen = () => {
 // ProductsOverviewScreen.navigationOptions = {
 //   headerTitle: 'All Products'
 // };
+
+const styles = StyleSheet.create({
+    centered: { flex: 1, justifyContent: 'center', alignItems: 'center' }
+  });
 
 export default ProductsOverviewScreen;
