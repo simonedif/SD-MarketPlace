@@ -1,14 +1,16 @@
 import React from 'react';
-import { FlatList, Text, View, Button } from 'react-native';
-//import { useSelector } from 'react-redux';
+import { ScrollView, Text, View, Button, StyleSheet, Image } from 'react-native';
 
 
 const ProductDetails = () => {
-    return (
-        <View>
-            <Text>I am products Details</Text> 
-        </View>
-    );
+  return (
+    <View>
+        <Text>I am products Details</Text> 
+    </View>
+  );
 };
 
-export default ProductDetails
+const styles = StyleSheet.create({});
+
+
+export default ProductDetails;
