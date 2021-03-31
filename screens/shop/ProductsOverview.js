@@ -15,7 +15,11 @@ const ProductsOverviewScreen = ({ navigation }) => {
             image={itemData.item.imageUrl}
             title={itemData.item.title}
             price={itemData.item.price}
-            OnViewDetail={() => navigation.navigate('Productsdetails')}
+            OnViewDetail={() => navigation.navigate('Productsdetails', {
+               productId: itemData.item.id,
+               productsTitle: itemData.item.title
+              })
+            }
             OnAddToCart={() => {}}
           />
         )}
@@ -25,7 +29,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
 
 export const screenOptions = () => {
     return {
-        headerTitle: 'All Products'
+        headerTitle: 'Service Desk MarketPlace'
     };
 };
 
