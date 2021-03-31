@@ -1,37 +1,33 @@
 import React from 'react';
 import { FlatList, Text, View, Button, StyleSheet } from 'react-native';
-//import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import ProductItem from '../../components/shop/ProductItems';
 
 const ProductsOverviewScreen = ({navigation}) => {
+  const products = useSelector(state => state.products.availableProducts);
     return (
-        <View>
-            <Text>I am prod</Text> 
-            <Button 
-                title='Go to register'
-                onPress={() => {navigation.navigate('CartScreen')}}
-                />
-        </View>
-    );
+      <FlatList
+        data={products}
+        keyExtractor={item => item.id}
+        renderItem={itemData => (
+          <ProductItem
+            image={itemData.item.imageUrl}
+            title={itemData.item.title}
+            price={itemData.item.price}
+            onViewDetail={() => {}}
+            onAddToCart={() => {}}
+          />
+        )}
+    />
+   );
 };
 
-// const ProductsOverviewScreen = props => {
-//   const products = useSelector(state => state.products.availableProducts);
-//   return (
-//     <FlatList
-//       data={products}
-//       keyExtractor={item => item.id}
-//       renderItem={itemData => <Text>{itemData.item.title}</Text>}
-//     />
-//   );
-// };
+export const screenOptions = () => {
+    return {
+        headerTitle: 'All Products'
+    };
+};
 
-// ProductsOverviewScreen.navigationOptions = {
-//   headerTitle: 'All Products'
-// };
-
-const styles = StyleSheet.create({
-    centered: { flex: 1, justifyContent: 'center', alignItems: 'center' }
-  });
 
 export default ProductsOverviewScreen;
