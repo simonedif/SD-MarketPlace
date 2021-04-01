@@ -1,19 +1,37 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation-stack';
-import { Platform } from 'react-native';
+import React from 'react';
+import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { View, Text, Button, Platform } from 'react-native';
 
 
-import ProductsOverviewScreen from '../screens/shop/ProductsOverview';
+//Default Screen
 import Colors from '../constants/Colors';
 
-const ProductsNavigator = createStackNavigator({
-    ProductsOverview: ProductsOverviewScreen
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: Platform.OS === 'android' ? Colors.primary: ''
-        },
-        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
-    }
-});
+//Screens Imoport
+import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOverview';
+import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
+import CartScreen from '../screens/shop/CartScreen';
 
-export default createAppContainer(ProductsNavigator);
+
+const defaultNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+};
+
+
+const ProductsStackNavigator = createStackNavigator();
+
+export const ProductsNavigator = () => {
+  return (
+  <NavigationContainer>
+    <ProductsStackNavigator.Navigator screenOptions={defaultNavOptions} >
+        <ProductsStackNavigator.Screen name="ProductsoverView" component={ProductsOverview} options={screenOptions} />
+        <ProductsStackNavigator.Screen name="Productsdetails" component={ProductsDetails} options={screenDetailsOptions} />
+        <ProductsStackNavigator.Screen name="Cartscreen" component={CartScreen} />
+    </ProductsStackNavigator.Navigator>
+  </NavigationContainer>
+  );
+};
