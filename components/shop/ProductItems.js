@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: '60%'
+        height: '90%'
     },
     details: {
         alignItems: 'center',
@@ -71,10 +71,12 @@ const styles = StyleSheet.create({
         padding: 10
     },
     title: {
+        fontFamily: 'open-sans-bold',
         fontSize: 18,
         marginVertical: 4
     },
     price: {
+        fontFamily: 'open-sans-bold',
         fontSize: 14,
         color: '#888'
     },

@@ -13,10 +13,16 @@ import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOvervie
 import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
 import CartScreen from '../screens/shop/CartScreen';
 
-
+//Page header configuration
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
+  },
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold'
+  },
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };

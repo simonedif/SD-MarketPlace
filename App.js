@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ProductsNavigator } from './navigation/ShopNavigator';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -13,15 +13,33 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer);
 
-//Fetch Font Function
+//Load Font Function
 const fetchFonts = () => {
-  return Font.loadAsync({
+  return (
+    Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-  });
+    })
+  );
 };
 
+
+
 export default function App() {
+  
+  //Loading Font async
+  const [fontLoad, setFontLoaded] = useState(false);
+
+  if (!fontLoad) {
+    return (
+      <AppLoading 
+        startAsync ={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    )
+  }
+
   return (
     <Provider store={store}>
       <ProductsNavigator />
