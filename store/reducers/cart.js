@@ -13,7 +13,28 @@ export default (state = initialState, action) => {
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
 
-            //Check Items if it's alredy in the Cart Screen
+            if (state.items[addedProduct.id]) {
+                // Alredy have items in the Cart
+                const updateCartItem = new cartModel(
+                    state.items[addedProduct.id].quantity + 1,
+                    prodPrice,
+                    prodTitle,
+                    state.items[addedProduct.id].sum + prodPrice
+                );
+                return {
+                    ...state,
+                    items: { ...state.items, [addedProduct.id]: updateCartItem },
+                    totalAmount: state.totalAmount + prodPrice
+
+                };
+
+            } else {
+                const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice);
+                //Add cartItem to the Items object
+                return {
+                    items: { ...state.items, [addedProduct.id]: newCartItem }
+                }
+            }
             
     }      
     return state;

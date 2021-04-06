@@ -1,8 +1,10 @@
 import React from 'react';
 import { ScrollView, Text, View, Button, StyleSheet, Image } from 'react-native';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Colors from '../../constants/Colors';
+import * as cartAction from '../../store/action/cart';
 
 //Route is to pass the Params 
 const ProductDetails = ({ route }) => {
@@ -10,11 +12,14 @@ const ProductDetails = ({ route }) => {
     const selectedProducts = useSelector(state => 
         state.products.availableProducts.find(prod => prod.id === productId)
         );
+      const dispatch = useDispatch();
     return (
       <ScrollView>
         <Image style={styles.image} source={{uri: selectedProducts.imageUrl}} />
         <View style={styles.action}>
-          <Button color={Colors.primary} title="Add To Cart" onPress={() => {}} />
+          <Button color={Colors.primary} title="Add To Cart" onPress={() => {
+            dispatch(cartAction.addToCart(selectedProducts))
+          }} />
         </View>
         <Text style={styles.price}>£{selectedProducts.price.toFixed(2)}</Text>
         <Text style={styles.description}>{selectedProducts.description}</Text>
