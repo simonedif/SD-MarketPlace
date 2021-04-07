@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, Text, Button, Platform } from 'react-native';
 
-
 //Default Screen
 import Colors from '../constants/Colors';
 
@@ -26,7 +25,6 @@ const defaultNavOptions = {
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
-
 
 const ProductsStackNavigator = createStackNavigator();
 

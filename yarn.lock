@@ -1298,10 +1298,9 @@
   dependencies:
     cross-spawn "^6.0.5"
 
-"@expo/vector-icons@^12.0.0":
+"@expo/vector-icons@^12.0.0", "@expo/vector-icons@expo/vector-icons":
   version "12.0.4"
-  resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-12.0.4.tgz#52061fffab83ca74af52288b5f839b090f7dabed"
-  integrity sha512-/EFbXri7jZmqj1jTY6wpauvMN0DY0Epic003d43yWqrScLlVERaxXrOR07BNuCZvVMHBAzXN4VbOzUUUTq6j8g==
+  resolved "https://codeload.github.com/expo/vector-icons/tar.gz/e4a7da71fbfd137cd7a3027ec6d1d7c8dd2ab239"
   dependencies:
     lodash.frompairs "^4.0.1"
     lodash.isequal "^4.5.0"
@@ -3859,7 +3858,7 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@>=2, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -5549,6 +5548,13 @@ react-native-web@~0.13.12:
     stacktrace-parser "^0.1.3"
     use-subscription "^1.0.0"
     whatwg-fetch "^3.0.0"
+
+react-navigation-header-buttons@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-navigation-header-buttons/-/react-navigation-header-buttons-7.0.1.tgz#298cba26aa27d9695e1f450e7eb3a175c0c3d2ed"
+  integrity sha512-ggIXhshnRv3Kaqw1ZlZLqMPtBOsLY4FLxxEOCHKe/XuWVfZGPmMqZBC/S4H8cQgIGRyFNOrypXF69Hb7fXMWNg==
+  dependencies:
+    invariant ">=2"
 
 react-redux@^7.2.3:
   version "7.2.3"

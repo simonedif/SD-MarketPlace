@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
             const prodTitle = addedProduct.title;
 
             if (state.items[addedProduct.id]) {
-                // Alredy have items in the Cart
+                // Alredy have items in the Cart list
                 const updateCartItem = new cartModel(
                     state.items[addedProduct.id].quantity + 1,
                     prodPrice,
@@ -25,7 +25,6 @@ export default (state = initialState, action) => {
                     ...state,
                     items: { ...state.items, [addedProduct.id]: updateCartItem },
                     totalAmount: state.totalAmount + prodPrice
-
                 };
 
             } else {

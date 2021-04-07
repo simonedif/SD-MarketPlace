@@ -1,14 +1,18 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
-//import { useSelector } from 'react-redux';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 
 const CartScreen = () => {
     return (
         <View>
-            <Text>Cart Screen</Text> 
+            <Text>Total: <Text>£{19.99}</Text></Text> 
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+
+})
 
 export default CartScreen

@@ -4,7 +4,9 @@ import { ScrollView, Text, View, Button, StyleSheet, Image } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
+
 import * as cartAction from '../../store/action/cart';
+
 
 //Route is to pass the Params 
 const ProductDetails = ({ route }) => {
