@@ -34,7 +34,7 @@ export const ProductsNavigator = () => {
     <ProductsStackNavigator.Navigator screenOptions={defaultNavOptions} >
         <ProductsStackNavigator.Screen name="ProductsoverView" component={ProductsOverview} options={screenOptions} />
         <ProductsStackNavigator.Screen name="Productsdetails" component={ProductsDetails} options={screenDetailsOptions} />
-        <ProductsStackNavigator.Screen name="Cartscreen" component={CartScreen} />
+        <ProductsStackNavigator.Screen name="Cart" component={CartScreen} />
     </ProductsStackNavigator.Navigator>
   </NavigationContainer>
   );
