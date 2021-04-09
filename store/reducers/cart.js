@@ -2,8 +2,8 @@ import { ADD_TO_CART } from '../action/cart';
 import cartModel from '../../models/cartModel';
 
 const initialState = {
-    items: {},
-    totalAmount: 0
+    items: [],
+    totalAmount: 0.0
 };
 
 export default (state = initialState, action) => {
@@ -12,6 +12,7 @@ export default (state = initialState, action) => {
             const addedProduct = action.product;
             const prodPrice = addedProduct.price;
             const prodTitle = addedProduct.title;
+            console.log(prodPrice)
 
             if (state.items[addedProduct.id]) {
                 // Alredy have items in the Cart list
@@ -23,7 +24,7 @@ export default (state = initialState, action) => {
                 );
                 return {
                     ...state,
-                    items: { ...state.items, [addedProduct.id]: updateCartItem },
+                    items: [ ...state.items, { id:addedProduct.id, ...updateCartItem }],
                     totalAmount: state.totalAmount + prodPrice
                 };
 
@@ -31,9 +32,10 @@ export default (state = initialState, action) => {
                 const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice);
                 //Add cartItem to the Items object
                 return {
-                    items: { ...state.items, [addedProduct.id]: newCartItem }
+                    items: [ ...state.items, { id:addedProduct.id, ...newCartItem }],
+                    totalAmount: state.totalAmount + prodPrice
                 }
-            }
+    }
             
     }      
     return state;
