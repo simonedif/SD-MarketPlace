@@ -7,14 +7,17 @@ import Colors from '../../constants/Colors';
 
 const CartScreen = () => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
-    //const cartItems = useSelector(state => state.cart check if an Array is a the best option
+    
+    // Dynamic button with order option
+    const cartItems = useSelector(state => state.cart.items)
+
   return (
     <View style={styles.screen} >
        <View style={styles.summary} >
           <View style={styles.summaryText} >
             <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>
            </View>
-          <Button title="Order Now" />
+          <Button title="Order Now" disabled={ cartItems.length === 0 } />
         </View>
         <FlatList 
           

@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { ProductsNavigator } from './navigation/ShopNavigator';
-import { createStore, combineReducers } from 'redux';
+//import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
+import { store } from './store/Index';
 
-//Reducer Root files
-import productsReducer from './store/reducers/products';
-import cartReducer from './store/reducers/cart';
-
-
-const rootReducer = combineReducers({
-    products: productsReducer,
-    cart: cartReducer
-});
-
-const store = createStore(rootReducer);
 
 //Load Font Function
 const fetchFonts = () => {
@@ -26,7 +16,6 @@ const fetchFonts = () => {
     })
   );
 };
-
 
 export default function App() {
   
@@ -50,3 +39,16 @@ export default function App() {
   );
 }
 
+
+
+// //Reducer Root files
+// import productsReducer from './store/reducers/products';
+// import cartReducer from './store/reducers/cart';
+
+
+// const rootReducer = combineReducers({
+//     products: productsReducer,
+//     cart: cartReducer
+// });
+
+//const store = createStore(rootReducer);

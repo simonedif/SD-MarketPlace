@@ -34,9 +34,8 @@ export default (state = initialState, action) => {
                 return {
                     items: [ ...state.items, { id:addedProduct.id, ...newCartItem }],
                     totalAmount: state.totalAmount + prodPrice
-                }
-    }
-            
-    }      
+                };        
+        };
+    };           
     return state;
 };

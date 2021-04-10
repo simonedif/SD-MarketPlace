@@ -24,7 +24,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
             image={itemData.item.imageUrl}
             title={itemData.item.title}
             price={itemData.item.price}
-            OnViewDetail={() => navigation.navigate('Productsdetails', {
+            OnViewDetail={() => navigation.navigate('ViewDetails', {
                productId: itemData.item.id,
                productsTitle: itemData.item.title
               })
