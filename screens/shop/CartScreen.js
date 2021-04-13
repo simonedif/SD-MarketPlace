@@ -3,12 +3,13 @@ import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Colors from '../../constants/Colors';
+import CartItem from '../../components/shop/CartItem';
 
 
 const CartScreen = () => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
     
-    // Dynamic button with order option
+    // Used for Dynamic button with order option & rendering Flat List
     const cartItems = useSelector(state => state.cart.items)
 
   return (
@@ -20,7 +21,16 @@ const CartScreen = () => {
           <Button title="Order Now" disabled={ cartItems.length === 0 } />
         </View>
         <FlatList 
-          
+          data={cartItems}
+          keyExtractor={item => item.id}
+          renderItem={itemData => (
+            <CartItem 
+                quantity={itemData.item.quantity}
+                title={itemData.item.prodTitle}
+                amount={itemData.item.sum}
+                onRemove={() => {}}
+            />
+          )}
         />
     </View>
     );
