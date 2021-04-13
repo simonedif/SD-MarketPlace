@@ -10,7 +10,21 @@ const CartScreen = () => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
     
     // Used for Dynamic button with order option & rendering Flat List
-    const cartItems = useSelector(state => state.cart.items)
+    const cartButton = useSelector(state => state.cart.items)
+
+    const cartProducts = useSelector(state => {
+      const arrayProducts = [];
+      for (const key in state.cart.items) {
+        arrayProducts.push({
+          productId: key,
+          productTitile: state.cart.items[key].prodTitle,
+          productPrice: state.cart.items[key].prodPrice,
+          quantity: state.cart.items[key].quantity,
+          sum: state.cart.items[key].sum
+        })
+      }
+    })
+
 
   return (
     <View style={styles.screen} >
@@ -18,15 +32,15 @@ const CartScreen = () => {
           <View style={styles.summaryText} >
             <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>
            </View>
-          <Button title="Order Now" disabled={ cartItems.length === 0 } />
+          <Button title="Order Now" disabled={cartButton.length === 0 } />
         </View>
         <FlatList 
-          data={cartItems}
-          keyExtractor={item => item.id}
+          data={cartProducts}
+          keyExtractor={item => item.productId}
           renderItem={itemData => (
             <CartItem 
                 quantity={itemData.item.quantity}
-                title={itemData.item.prodTitle}
+                title={itemData.item.productTitile}
                 amount={itemData.item.sum}
                 onRemove={() => {}}
             />
