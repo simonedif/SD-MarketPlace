@@ -14,17 +14,16 @@ const CartScreen = () => {
 
     const cartProducts = useSelector(state => {
       const arrayProducts = [];
-      for (const key in state.cart.items) {
-        arrayProducts.push({
+      for (const key in state.cart.items.id) {
+        arrayProducts.push([{
           productId: key,
-          productTitile: state.cart.items[key].prodTitle,
-          productPrice: state.cart.items[key].prodPrice,
-          quantity: state.cart.items[key].quantity,
-          sum: state.cart.items[key].sum
-        })
+          productTitile: state.cart.items.prodTitle,
+          productPrice: state.cart.items.prodPrice,
+          quantity: state.cart.items.quantity,
+          sum: state.cart.items.sum
+        }])
       }
     })
-
 
   return (
     <View style={styles.screen} >
