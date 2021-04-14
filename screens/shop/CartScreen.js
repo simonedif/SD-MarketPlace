@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
 
 
-const CartScreen = () => {
+const CartScreen = (props) => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
     
     // Used for Dynamic button with order option & rendering Flat List
@@ -14,17 +14,18 @@ const CartScreen = () => {
 
     const cartProducts = useSelector(state => {
       const arrayProducts = [];
-      for (const key in state.cart.items.id) {
-        arrayProducts.push([{
+      for (const [key] in state.cart.items) {
+        arrayProducts.push({
           productId: key,
-          productTitile: state.cart.items.prodTitle,
-          productPrice: state.cart.items.prodPrice,
-          quantity: state.cart.items.quantity,
-          sum: state.cart.items.sum
-        }])
+          productTitile: state.cart.items[key].prodTitle,
+          productPrice: state.cart.items[key].prodPrice,
+          quantity: state.cart.items[key].quantity,
+          sum: state.cart.items[key].sum
+        });
       }
-    })
-
+      return arrayProducts;
+    });
+  
   return (
     <View style={styles.screen} >
        <View style={styles.summary} >
@@ -35,7 +36,7 @@ const CartScreen = () => {
         </View>
         <FlatList 
           data={cartProducts}
-          keyExtractor={item => item.productId}
+          keyExtractor={item => item.id}
           renderItem={itemData => (
             <CartItem 
                 quantity={itemData.item.quantity}
@@ -48,6 +49,7 @@ const CartScreen = () => {
     </View>
     );
 };
+
 
 const styles = StyleSheet.create({
     screen: {
