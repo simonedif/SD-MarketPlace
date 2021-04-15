@@ -4,27 +4,31 @@ import { useSelector } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
+import cart from '../../store/reducers/cart';
 
 
 const CartScreen = (props) => {
     const cartTotalAmount = useSelector(state => state.cart.totalAmount);
     
     // Used for Dynamic button with order option & rendering Flat List
-    const cartButton = useSelector(state => state.cart.items)
+    //const cartButton = useSelector(state => state.cart.items)
 
-    const cartProducts = useSelector(state => {
-      const arrayProducts = [];
-      for (const [key] in state.cart.items) {
-        arrayProducts.push({
-          productId: key,
-          productTitile: state.cart.items[key].prodTitle,
-          productPrice: state.cart.items[key].prodPrice,
-          quantity: state.cart.items[key].quantity,
-          sum: state.cart.items[key].sum
-        });
-      }
-      return arrayProducts;
-    });
+    const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
+
+    
+    // const cartProducts = useSelector(state => {
+    //   const arrayProducts = [];
+    //   for (const [key] in state.cart.items) {
+    //     arrayProducts.push({
+    //       productId: key,
+    //       productTitile: state.cart.items[key].prodTitle,
+    //       productPrice: state.cart.items[key].prodPrice,
+    //       quantity: state.cart.items[key].quantity,
+    //       sum: state.cart.items[key].sum
+    //     });
+    //   }
+    //   return arrayProducts;
+    // });
   
   return (
     <View style={styles.screen} >
@@ -32,15 +36,15 @@ const CartScreen = (props) => {
           <View style={styles.summaryText} >
             <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>
            </View>
-          <Button title="Order Now" disabled={cartButton.length === 0 } />
+          <Button title="Order Now" disabled={cartProducts.length === 0 } />
         </View>
         <FlatList 
           data={cartProducts}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.index}
           renderItem={itemData => (
             <CartItem 
                 quantity={itemData.item.quantity}
-                title={itemData.item.productTitile}
+                title={itemData.item.prodTitle}
                 amount={itemData.item.sum}
                 onRemove={() => {}}
             />
