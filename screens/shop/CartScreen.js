@@ -14,7 +14,8 @@ const CartScreen = (props) => {
     //const cartButton = useSelector(state => state.cart.items)
 
     const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
-
+    
+    console.log(cartProducts);
     
     // const cartProducts = useSelector(state => {
     //   const arrayProducts = [];
@@ -40,15 +41,17 @@ const CartScreen = (props) => {
         </View>
         <FlatList 
           data={cartProducts}
-          keyExtractor={item => item.index}
-          renderItem={itemData => (
+          keyExtractor={(item,index) => `key-${item.id}-${index}`}
+          renderItem={itemData => {
+            const { quantity,productTitle,sum } = itemData.item
+            return (
             <CartItem 
-                quantity={itemData.item.quantity}
-                title={itemData.item.prodTitle}
-                amount={itemData.item.sum}
+                quantity={quantity}
+                title={productTitle}
+                amount={sum * quantity}
                 onRemove={() => {}}
             />
-          )}
+          )}}
         />
     </View>
     );
