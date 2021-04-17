@@ -8,29 +8,13 @@ import cart from '../../store/reducers/cart';
 
 
 const CartScreen = (props) => {
-    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+   //Cart Total use to  render the price on the total
+  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+   //Render cart screen  
+  const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
     
-    // Used for Dynamic button with order option & rendering Flat List
-    //const cartButton = useSelector(state => state.cart.items)
-
-    const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
-    
-    console.log(cartProducts);
-    
-    // const cartProducts = useSelector(state => {
-    //   const arrayProducts = [];
-    //   for (const [key] in state.cart.items) {
-    //     arrayProducts.push({
-    //       productId: key,
-    //       productTitile: state.cart.items[key].prodTitle,
-    //       productPrice: state.cart.items[key].prodPrice,
-    //       quantity: state.cart.items[key].quantity,
-    //       sum: state.cart.items[key].sum
-    //     });
-    //   }
-    //   return arrayProducts;
-    // });
-  
+  console.log(cartProducts);
+      
   return (
     <View style={styles.screen} >
        <View style={styles.summary} >
@@ -43,7 +27,7 @@ const CartScreen = (props) => {
           data={cartProducts}
           keyExtractor={(item,index) => `key-${item.id}-${index}`}
           renderItem={itemData => {
-            const { quantity,productTitle,sum } = itemData.item
+            const { quantity, productTitle, sum } = itemData.item
             return (
             <CartItem 
                 quantity={quantity}

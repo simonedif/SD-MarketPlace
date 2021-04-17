@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     quantity: {
-      fontFamily: 'open-sans',
+      fontFamily: 'open-sans-bold',
       color: '#888',
-      fontSize: 16
+      fontSize: 16,
+      marginRight: 12
     },      
     mainText: {
       fontFamily: 'open-sans-bold',
