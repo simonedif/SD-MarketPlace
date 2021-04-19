@@ -1,19 +1,27 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
+
+//redux import reducers and Actions
 import cart from '../../store/reducers/cart';
+import * as cartactions from '../../store/action/cart';
 
 
 const CartScreen = (props) => {
-   //Cart Total use to  render the price on the total
+   
+  //Cart Total use to  render the price on the total
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
-   //Render cart screen  
+   
+  //Render cart screen  
   const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
     
   console.log(cartProducts);
+
+  //Import Dispatch function
+  const dispatch = useDispatch();
       
   return (
     <View style={styles.screen} >
@@ -27,13 +35,15 @@ const CartScreen = (props) => {
           data={cartProducts}
           keyExtractor={(item,index) => `key-${item.id}-${index}`}
           renderItem={itemData => {
-            const { quantity, productTitle, sum } = itemData.item
+            const { quantity, productTitle, sum, productId } = itemData.item
             return (
             <CartItem 
                 quantity={quantity}
                 title={productTitle}
                 amount={sum * quantity}
-                onRemove={() => {}}
+                onRemove={() => {
+                  dispatch(cartactions.renderItem(productId))
+                }}
             />
           )}}
         />
