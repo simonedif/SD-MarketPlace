@@ -6,5 +6,5 @@ export const addToCart = product => {
 };
 
 export const removeCart = productId => {
-    return { type: REMOVE_FROM_CART, payload: productId}
+    return { type: REMOVE_FROM_CART, productId: productId}
 };

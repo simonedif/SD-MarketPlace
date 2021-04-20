@@ -35,27 +35,22 @@ export default (state = initialState, action) => {
         };
       };
     case REMOVE_FROM_CART:
-      const actualState = state.items.filter(item => { return item.id === addedProduct.id })
-      const selectedItem = state.items[action.payload];
-      const actualQty = selectedItem.quantity
-      
-      if(actualQty > 1) {
-
-        actualState.quantity = actualState.quantity -1;
-        const otherItems = state.items.filter(item => { return item.id !== addedProduct.id });
-        
-        return {
-          ...state,
-          items: [...actualState, ...otherItems],
-          totalAmount: state.totalAmount - prodPrice
+        const selectedItems = state.items.filter(item => { return item.productId === item.productId })
+        if (selectedItems.length > 1) {
+          selectedItems[0].quantity = selectedItems[0].quantity -1;
+          const otherItems = state.items.filter(item => { return item.productId })
+          return {
+            ...state,
+            items: [ ...selectedItems, ...otherItems ],
+            totalAmount: state.totalAmount - prodPrice
+          };
+        } else {
+          return {
+            ...state,
+            items: [ ...otherItems],
+            totalAmount: state.totalAmount
+          };
         };
-      } else {
-        return {
-          ...state,
-          items: [...otherItems],
-          totalAmount: state.totalAmount - prodPrice
-      }
-    };
   };
   return state;
 };
