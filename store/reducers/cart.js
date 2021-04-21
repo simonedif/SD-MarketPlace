@@ -36,21 +36,16 @@ export default (state = initialState, action) => {
       };
     case REMOVE_FROM_CART:
         const selectedItems = state.items.filter(item => { return item.productId === item.productId })
-        if (selectedItems.length > 1) {
+        const otherItems = state.items.filter(item => { return item.productId !== item.productId })
+
+        if (selectedItems[0].quantity > 1) {
           selectedItems[0].quantity = selectedItems[0].quantity -1;
-          const otherItems = state.items.filter(item => { return item.productId })
           return {
             ...state,
             items: [ ...selectedItems, ...otherItems ],
             totalAmount: state.totalAmount - prodPrice
           };
-        } else {
-          return {
-            ...state,
-            items: [ ...otherItems],
-            totalAmount: state.totalAmount
-          };
-        };
+        };   
   };
   return state;
 };
