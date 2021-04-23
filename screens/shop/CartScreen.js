@@ -16,9 +16,9 @@ const CartScreen = (props) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
    
   //Render cart screen  
-  const cartProducts = useSelector(state => state.cart.items.map((item, index) => ({ ...item, productId: index })));
+  const cartProducts = useSelector(state => state.cart.items);
     
-  console.log(cartProducts);
+ 
 
   //Import Dispatch function
   const dispatch = useDispatch();
@@ -35,14 +35,14 @@ const CartScreen = (props) => {
           data={cartProducts}
           keyExtractor={(item,index) => `key-${item.id}-${index}`}
           renderItem={itemData => {
-            const { quantity, productTitle, sum, productId } = itemData.item
+            const { quantity, productTitle, sum, id } = itemData.item
             return (
             <CartItem 
                 quantity={quantity}
                 title={productTitle}
                 amount={sum * quantity}
                 onRemove={() => {
-                  dispatch(cartactions.removeCart(productId));
+                  dispatch(cartactions.removeCart(id));
                 }}
             />
           )}}

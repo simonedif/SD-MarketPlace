@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       const addedProduct = action.product;
       const prodPrice = addedProduct.price;
       const prodTitle = addedProduct.title;
-      console.log(prodPrice)
+      
 
       const duplicated = state.items.filter(item => { return item.id === addedProduct.id })
       if (duplicated.length > 0) {
@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         };
         
       } else {
-        const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice);
+        const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice, state.items.length);
         //Add cartItem to the Items object
         return {
           ...state,
@@ -35,17 +35,26 @@ export default (state = initialState, action) => {
         };
       };
     case REMOVE_FROM_CART:
-        const selectedItems = state.items.filter(item => { return item.productId === item.productId })
-        const otherItems = state.items.filter(item => { return item.productId !== item.productId })
+        const selectedItems = state.items.filter(item => { return item.id === action.productId })
+        const otherItems = state.items.filter(item => { return item.id !== action.productId })
+        const formattedProduct = (state.totalAmount - selectedItems[0].productPrice).toFixed(2);
 
         if (selectedItems[0].quantity > 1) {
-          selectedItems[0].quantity = selectedItems[0].quantity -1;
+          selectedItems[0].quantity = selectedItems[0].quantity -1
+          const sortarray = [...selectedItems, ...otherItems];
+          sortarray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0);
           return {
             ...state,
-            items: [ ...selectedItems, ...otherItems ],
-            totalAmount: state.totalAmount - prodPrice
+            items: sortarray, 
+            totalAmount: formattedProduct
           };
-        };   
+        } else {
+          return {
+            ...state,
+            items: otherItems,
+            totalAmount: formattedProduct
+          }
+        }
   };
   return state;
 };
