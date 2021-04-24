@@ -41,11 +41,12 @@ export default (state = initialState, action) => {
 
         if (selectedItems[0].quantity > 1) {
           selectedItems[0].quantity = selectedItems[0].quantity -1
-          const sortarray = [...selectedItems, ...otherItems];
-          sortarray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0);
+          const sortArray = [...selectedItems, ...otherItems];
+          // Sort List of Product Listed
+          sortArray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0); 
           return {
             ...state,
-            items: sortarray, 
+            items: sortArray, 
             totalAmount: formattedProduct
           };
         } else {
