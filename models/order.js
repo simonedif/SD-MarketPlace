@@ -7,4 +7,4 @@ class Order {
     }    
 }
 
-export default order;
+export default Order;

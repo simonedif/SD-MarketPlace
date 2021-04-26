@@ -8,7 +8,7 @@ import CartItem from '../../components/shop/CartItem';
 //redux import reducers and Actions
 import cart from '../../store/reducers/cart';
 import * as cartactions from '../../store/action/cart';
-
+import * as orderActions from '../../store/action/order';
 
 const CartScreen = (props) => {
    

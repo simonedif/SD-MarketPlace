@@ -34,6 +34,7 @@ export default (state = initialState, action) => {
           totalAmount: state.totalAmount + prodPrice
         };
       };
+      
     case REMOVE_FROM_CART:
         const selectedItems = state.items.filter(item => { return item.id === action.productId })
         const otherItems = state.items.filter(item => { return item.id !== action.productId })
