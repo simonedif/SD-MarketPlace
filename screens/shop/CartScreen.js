@@ -29,7 +29,16 @@ const CartScreen = (props) => {
           <View style={styles.summaryText} >
             <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>
            </View>
-          <Button title="Order Now" disabled={cartProducts.length === 0 } />
+          <Button 
+            title="Order Now" 
+            disabled={cartProducts.length === 0 }
+            onPress={() => {
+              dispatch(orderActions.addOrder(cartProducts, cartTotalAmount))
+              //Console.log Testing Items
+              console.log(cartTotalAmount);
+              console.log(cartProducts);
+            }}
+            />
         </View>
         <FlatList 
           data={cartProducts}
