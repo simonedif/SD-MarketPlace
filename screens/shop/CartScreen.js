@@ -8,7 +8,7 @@ import CartItem from '../../components/shop/CartItem';
 //redux import reducers and Actions
 import cart from '../../store/reducers/cart';
 import * as cartactions from '../../store/action/cart';
-import * as orderActions from '../../store/action/order';
+import * as ordersActions from '../../store/action/order';
 
 const CartScreen = (props) => {
    
@@ -17,9 +17,7 @@ const CartScreen = (props) => {
    
   //Render cart screen  
   const cartProducts = useSelector(state => state.cart.items);
-    
- 
-
+     
   //Import Dispatch function
   const dispatch = useDispatch();
       
@@ -33,7 +31,7 @@ const CartScreen = (props) => {
             title="Order Now" 
             disabled={cartProducts.length === 0 }
             onPress={() => {
-              dispatch(orderActions.addOrder(cartProducts, cartTotalAmount))
+              dispatch(ordersActions.addOrder(cartProducts, cartTotalAmount))
               //Console.log Testing Items
               console.log(cartTotalAmount);
               console.log(cartProducts);
@@ -57,7 +55,7 @@ const CartScreen = (props) => {
           )}}
         />
     </View>
-    );
+  );
 };
 
 
