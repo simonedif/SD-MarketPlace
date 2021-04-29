@@ -7,10 +7,14 @@ import { View, Text, Button, Platform } from 'react-native';
 //Default Screen
 import Colors from '../constants/Colors';
 
+
 //Screens Imoport
 import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOverview';
 import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
 import CartScreen from '../screens/shop/CartScreen';
+import OrdersScreen from '../screens/shop/OrdersScreen';
+
+
 
 //Page header configuration
 const defaultNavOptions = {
@@ -26,6 +30,8 @@ const defaultNavOptions = {
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
 
+
+
 const ProductsStackNavigator = createStackNavigator();
 
 export const ProductsNavigator = () => {
@@ -37,5 +43,17 @@ export const ProductsNavigator = () => {
         <ProductsStackNavigator.Screen name="Cart" component={CartScreen} />
     </ProductsStackNavigator.Navigator>
   </NavigationContainer>
+  );
+};
+
+const Drawer = createDrawerNavigator();
+
+export const OrdersNavigator = () => {
+  return (
+      <NavigationContainer>
+        <Drawer.Navigator screenOptions={defaultNavOptions} >
+          <Drawer.Screen name="Orders" component={OrdersScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
   );
 };

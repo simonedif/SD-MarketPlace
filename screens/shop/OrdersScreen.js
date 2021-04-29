@@ -8,9 +8,11 @@ const OrdersScreen = (props) => {
     const orders = useSelector(state => state.orders.orders);
 
     return (
-        <View>
-            <Text>Order Screen</Text> 
-        </View>
+        <FlatList 
+            data={orders}
+            keyExtractor={item => item.id}
+            renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
+        />
     );
 };
 
