@@ -42,6 +42,19 @@ export const screenOptions = props => {
   return {
     headerTitle: 'Service Desk MarketPlace',
 
+      //Header Icon on The Left
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navigation.navigate('Orders');
+          }}
+        />
+      </HeaderButtons>
+    ),
+
     //Header Icon on The Right
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>

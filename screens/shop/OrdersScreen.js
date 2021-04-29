@@ -16,4 +16,10 @@ const OrdersScreen = (props) => {
     );
 };
 
+export const orderOptions = props => {
+  return {
+    headerTitle: 'Your Order',
+  }
+};
+
 export default OrdersScreen;

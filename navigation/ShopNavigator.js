@@ -11,8 +11,8 @@ import Colors from '../constants/Colors';
 //Screens Imoport
 import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOverview';
 import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
-import CartScreen from '../screens/shop/CartScreen';
-import OrdersScreen from '../screens/shop/OrdersScreen';
+import CartScreen, { cartOptions } from '../screens/shop/CartScreen';
+import OrdersScreen, { orderOptions } from '../screens/shop/OrdersScreen';
 
 
 
@@ -31,7 +31,6 @@ const defaultNavOptions = {
 };
 
 
-
 const ProductsStackNavigator = createStackNavigator();
 
 export const ProductsNavigator = () => {
@@ -40,7 +39,7 @@ export const ProductsNavigator = () => {
     <ProductsStackNavigator.Navigator screenOptions={defaultNavOptions} >
         <ProductsStackNavigator.Screen name="ProductsOverView" component={ProductsOverview} options={screenOptions} />
         <ProductsStackNavigator.Screen name="ViewDetails" component={ProductsDetails} options={screenDetailsOptions} />
-        <ProductsStackNavigator.Screen name="Cart" component={CartScreen} />
+        <ProductsStackNavigator.Screen name="Cart" component={CartScreen} options={cartOptions} />
     </ProductsStackNavigator.Navigator>
   </NavigationContainer>
   );
@@ -52,7 +51,7 @@ export const OrdersNavigator = () => {
   return (
       <NavigationContainer>
         <Drawer.Navigator screenOptions={defaultNavOptions} >
-          <Drawer.Screen name="Orders" component={OrdersScreen} />
+          <Drawer.Screen name="Orders" component={OrdersScreen} options={orderOptions} />
         </Drawer.Navigator>
       </NavigationContainer>
   );

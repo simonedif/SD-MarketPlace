@@ -58,6 +58,12 @@ const CartScreen = (props) => {
   );
 };
 
+export const cartOptions = props => {
+  return {
+    headerTitle: 'Your Cart',
+  }
+};
+
 
 const styles = StyleSheet.create({
     screen: {
