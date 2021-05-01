@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, Text, View, Button, StyleSheet, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 //Header Button UI
 import HeaderButton from '../../components/UI/HeaderButton';
@@ -38,7 +39,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
    );
 };
 
-export const screenOptions = props => {
+export const screenOptions = ({ navigation }) => {
   return {
     headerTitle: 'Service Desk MarketPlace',
 
@@ -49,7 +50,7 @@ export const screenOptions = props => {
           title="Menu"
           iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
           onPress={() => {
-            navigation.navigate('Orders');
+            navigation.toggleDrawer();
           }}
         />
       </HeaderButtons>
@@ -62,7 +63,7 @@ export const screenOptions = props => {
           title="Cart"
           iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
           onPress={() => {
-            props.navigation.navigate('Cart');
+            navigation.navigate('Cart');
           }}
         />
       </HeaderButtons>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ProductsNavigator } from './navigation/ShopNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
@@ -32,8 +33,10 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <ProductsNavigator />
-    </Provider> 
+    <NavigationContainer>
+      <Provider store={store}>
+        <ProductsNavigator />
+      </Provider>
+    </NavigationContainer>
   );
 }

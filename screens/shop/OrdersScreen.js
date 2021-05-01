@@ -4,16 +4,14 @@ import { useSelector } from 'react-redux';
 
 
 const OrdersScreen = (props) => {
-    
-    const orders = useSelector(state => state.orders.orders);
-
+  const orders = useSelector(state => state.orders.orders);
     return (
-        <FlatList 
-            data={orders}
-            keyExtractor={item => item.id}
-            renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
-        />
-    );
+      <FlatList 
+        data={orders}
+        keyExtractor={item => item.id}
+        renderItem={itemData => <Text>{itemData.item.totalAmount}</Text>}
+    />
+  );
 };
 
 export const orderOptions = props => {
