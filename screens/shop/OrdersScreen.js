@@ -1,6 +1,10 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, Platform, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+
+import HeaderButton from '../../components/UI/HeaderButton';
+import Colors from '../../constants/Colors';
 
 
 const OrdersScreen = (props) => {
@@ -14,10 +18,24 @@ const OrdersScreen = (props) => {
   );
 };
 
-export const orderOptions = props => {
+//Header Option Configuration
+
+export const ordersScreenOptions = ({ navigation }) => {
   return {
-    headerTitle: 'Your Order',
-  }
+    headerTitle: 'Your Orders',
+
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navigation.openDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 export default OrdersScreen;

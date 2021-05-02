@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { ProductsNavigator } from './navigation/ShopNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 import { store } from './store/Index';
 
+//Import From Drawer Navigation Screen
+import { ShopNavigator } from './navigation/ShopNavigator';
 
-//Load Font Function
+
+//Load Fonts into the App 
 const fetchFonts = () => {
   return (
     Font.loadAsync({
@@ -35,8 +37,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Provider store={store}>
-        <ProductsNavigator />
+        <ShopNavigator />
       </Provider>
     </NavigationContainer>
   );
-}
+};

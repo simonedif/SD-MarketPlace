@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
-import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { View, Text, Button, Platform } from 'react-native';
 
@@ -11,9 +10,9 @@ import Colors from '../constants/Colors';
 import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOverview';
 import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
 import CartScreen, { cartOptions } from '../screens/shop/CartScreen';
-import OrdersScreen, { orderOptions } from '../screens/shop/OrdersScreen';
+import OrdersScreen, { ordersScreenOptions } from '../screens/shop/OrdersScreen';
 
-//Page header configuration
+//Page header standard default configurations
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === 'android' ? Colors.primary : ''
@@ -27,6 +26,7 @@ const defaultNavOptions = {
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
 };
 
+//Main Product Stack Navigator
 const ProductsStackNavigator = createStackNavigator();
 
 export const ProductsNavigator = () => {
@@ -39,12 +39,25 @@ export const ProductsNavigator = () => {
   );
 };
 
-const Drawer = createDrawerNavigator();
+//Order Stack Navigator
+const OrderStackNavigator = createStackNavigator();
 
 export const OrdersNavigator = () => {
   return (
-    <Drawer.Navigator screenOptions={defaultNavOptions} >
-      <Drawer.Screen name="Orders" component={OrdersScreen} options={orderOptions} />
-    </Drawer.Navigator>
+    <OrderStackNavigator.Navigator screenOptions={defaultNavOptions} >
+      <OrderStackNavigator.Screen name="Orders" component={OrdersScreen} options={ordersScreenOptions} />
+    </OrderStackNavigator.Navigator>
+  );
+};
+
+//Drawer Navigator configuration
+const ShopDrawerNavigator = createDrawerNavigator();
+
+ export const ShopNavigator = () => {
+  return (
+    <ShopDrawerNavigator.Navigator>
+      <ShopDrawerNavigator.Screen name="Products" component={ProductsNavigator} />
+      <ShopDrawerNavigator.Screen name="Orders" component={OrdersNavigator} />
+    </ShopDrawerNavigator.Navigator>
   );
 };
