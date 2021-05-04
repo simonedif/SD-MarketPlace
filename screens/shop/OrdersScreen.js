@@ -34,7 +34,7 @@ export const ordersScreenOptions = ({ navigation }) => {
           }}
         />
       </HeaderButtons>
-    ),
+    )
   };
 };
 

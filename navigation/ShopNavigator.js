@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { View, Text, Button, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 //Default Screen
 import Colors from '../constants/Colors';
@@ -56,8 +57,32 @@ const ShopDrawerNavigator = createDrawerNavigator();
  export const ShopNavigator = () => {
   return (
     <ShopDrawerNavigator.Navigator>
-      <ShopDrawerNavigator.Screen name="Products" component={ProductsNavigator} />
-      <ShopDrawerNavigator.Screen name="Orders" component={OrdersNavigator} />
+      <ShopDrawerNavigator.Screen 
+        name="Products" 
+        component={ProductsNavigator} 
+        options={{
+          drawerIcon: props => (
+            <Ionicons 
+              name={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+              size={23}
+              color={props.color}
+            />
+          )
+        }}
+      />
+      <ShopDrawerNavigator.Screen 
+        name="Orders" 
+        component={OrdersNavigator}
+        options={{
+          drawerIcon: props => (
+            <Ionicons 
+              name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+              size={23}
+              color={props.color}
+            />
+          )
+        }}
+      />
     </ShopDrawerNavigator.Navigator>
   );
 };
