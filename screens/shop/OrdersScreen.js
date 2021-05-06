@@ -6,23 +6,27 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import Colors from '../../constants/Colors';
 
-//Order Item Component 
+//Order Item Component Import
 import OrderItem from '../../components/shop/OrderItem';
 
 
 const OrdersScreen = (props) => {
   const orders = useSelector(state => state.orders.orders);
     return (
-      <FlatList 
+        <FlatList 
         data={orders}
         keyExtractor={item => item.id}
-        renderItem={itemData => <OrderItem amount={itemData.item.totalAmount} />}
+        renderItem={itemData => <OrderItem 
+          amount={itemData.item.totalAmount} 
+          date={itemData.item.readableDate}
+        />
+      }
     />
   );
 };
 
-//Header Option Configuration
 
+//Header Option Configuration
 export const ordersScreenOptions = ({ navigation }) => {
   return {
     headerTitle: 'Your Orders',

@@ -8,7 +8,7 @@ const OrderItem = (props) => {
       <View style={styles.orderItems} >
         <View style={styles.summary} >
           <Text style={styles.amount} >£{props.amount.toFixed(2)}</Text>
-          <Text style={styles.date} >£{props.date}</Text>
+          <Text style={styles.date} >{props.date}</Text>
         </View>
         <Button color={Colors.primary} title="Show Details" />
     </View>
@@ -25,17 +25,19 @@ const styles = StyleSheet.create({
     elevation: 5,
     backgroundColor: 'white',
     margin: 20,
-    padding: 10
+    padding: 10,
+    alignItems: 'center',
   },
   summary: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
-    width: '100%'
+    width: '100%',
+    marginBottom: 12
   },
   amount: {
     fontFamily: 'open-sans-bold',
-    fontSize: 16,
+    fontSize: 16
   },
   date: {
     fontFamily: 'open-sans',

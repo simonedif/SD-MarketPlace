@@ -28,6 +28,7 @@ export default (state = initialState, action) => {
         
       } else {
         const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice, state.items.length);
+        
         //Add cartItem to the Items object
         return {
           ...state,
@@ -44,6 +45,7 @@ export default (state = initialState, action) => {
         if (selectedItems[0].quantity > 1) {
           selectedItems[0].quantity = selectedItems[0].quantity -1
           const sortArray = [...selectedItems, ...otherItems];
+
           // Sort List of Product Listed
           sortArray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0); 
           return {

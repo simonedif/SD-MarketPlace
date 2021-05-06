@@ -56,7 +56,7 @@ const ShopDrawerNavigator = createDrawerNavigator();
 
  export const ShopNavigator = () => {
   return (
-    <ShopDrawerNavigator.Navigator>
+    <ShopDrawerNavigator.Navigator initialRouteName="ProductsOverView" >
       <ShopDrawerNavigator.Screen 
         name="Products" 
         component={ProductsNavigator} 
