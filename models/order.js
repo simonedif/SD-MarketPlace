@@ -5,13 +5,15 @@ class Order {
         this.id = id;
         this.items = items;
         this.totalAmount = totalAmount;
-        this.date = date;
+        this.date = moment(date).format('Do MMMM YY, hh:mm a');
+
+
     }
    //Moment Packages Installed
    
-    get readableDate() {
-        return moment(this.date).format('Do MMMM YY, hh:mm a');
-    }
+    // get readableDate() {
+    //     return moment(this.date).format('Do MMMM YY, hh:mm a');
+    // }
 }
 
 export default Order;

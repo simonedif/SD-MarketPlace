@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           items: [...duplicated, ...restItems],
-          totalAmount: state.totalAmount + prodPrice
+          totalAmount: parseFloat(state.totalAmount) + parseFloat(prodPrice)
         };
         
       } else {
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
         return {
           ...state,
           items: [...state.items, { id: addedProduct.id, ...newCartItem }],
-          totalAmount: state.totalAmount + prodPrice
+          totalAmount: parseFloat(state.totalAmount) + parseFloat(prodPrice)
         };
       };
       
