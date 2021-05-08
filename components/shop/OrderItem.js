@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, Button, StyleSheet } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
 const OrderItem = (props) => {
+  //Set Button ShowDetails as False (No Show)
+  const [ showDetails, SetShowDetails ] = useState(false);
+
     return (
       <View style={styles.orderItems} >
         <View style={styles.summary} >
           <Text style={styles.amount} >£{parseFloat(props.amount).toFixed(2)}</Text>
           <Text style={styles.date} >{props.date}</Text>
         </View>
-        <Button color={Colors.primary} title="Show Details" />
+        <Button color={Colors.primary} title="Show Details"
+          onPress={() => { SetShowDetails(prevState => !prevState);
+          }}
+        />  
+          {showDetails && <View>
+              <Text>Work In Progress</Text>
+            </View> 
+          }
     </View>
   );
 };
