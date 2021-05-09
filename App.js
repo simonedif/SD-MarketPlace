@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { ProductsNavigator } from './navigation/ShopNavigator';
-//import { createStore, combineReducers } from 'redux';
+import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font'
 import { store } from './store/Index';
 
+//Import From Drawer Navigation Screen
+import { ShopNavigator } from './navigation/ShopNavigator';
 
-//Load Font Function
+
+//Load Fonts into the App 
 const fetchFonts = () => {
   return (
     Font.loadAsync({
@@ -33,22 +35,10 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <ProductsNavigator />
-    </Provider> 
+    <NavigationContainer>
+      <Provider store={store}>
+        <ShopNavigator />
+      </Provider>
+    </NavigationContainer>
   );
-}
-
-
-
-// //Reducer Root files
-// import productsReducer from './store/reducers/products';
-// import cartReducer from './store/reducers/cart';
-
-
-// const rootReducer = combineReducers({
-//     products: productsReducer,
-//     cart: cartReducer
-// });
-
-//const store = createStore(rootReducer);
+};

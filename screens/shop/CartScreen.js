@@ -8,7 +8,7 @@ import CartItem from '../../components/shop/CartItem';
 //redux import reducers and Actions
 import cart from '../../store/reducers/cart';
 import * as cartactions from '../../store/action/cart';
-
+import * as ordersActions from '../../store/action/order';
 
 const CartScreen = (props) => {
    
@@ -17,9 +17,7 @@ const CartScreen = (props) => {
    
   //Render cart screen  
   const cartProducts = useSelector(state => state.cart.items);
-    
- 
-
+     
   //Import Dispatch function
   const dispatch = useDispatch();
       
@@ -29,7 +27,16 @@ const CartScreen = (props) => {
           <View style={styles.summaryText} >
             <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>
            </View>
-          <Button title="Order Now" disabled={cartProducts.length === 0 } />
+          <Button 
+            title="Order Now" 
+            disabled={cartProducts.length === 0 }
+            onPress={() => {
+              dispatch(ordersActions.addOrder(cartProducts, cartTotalAmount))
+              //Console.log Testing Items
+              console.log(cartTotalAmount);
+              console.log(cartProducts);
+            }}
+            />
         </View>
         <FlatList 
           data={cartProducts}
@@ -48,7 +55,13 @@ const CartScreen = (props) => {
           )}}
         />
     </View>
-    );
+  );
+};
+
+export const cartOptions = props => {
+  return {
+    headerTitle: 'Your Cart',
+  }
 };
 
 

@@ -1,5 +1,6 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../action/cart';
 import cartModel from '../../models/cartModel';
+import { ADD_ORDER } from '../action/order';
 
 const initialState = {
   items: [],
@@ -22,18 +23,20 @@ export default (state = initialState, action) => {
         return {
           ...state,
           items: [...duplicated, ...restItems],
-          totalAmount: state.totalAmount + prodPrice
+          totalAmount: parseFloat(state.totalAmount) + parseFloat(prodPrice)
         };
         
       } else {
         const newCartItem = new cartModel(1, prodPrice, prodTitle, prodPrice, state.items.length);
+        
         //Add cartItem to the Items object
         return {
           ...state,
           items: [...state.items, { id: addedProduct.id, ...newCartItem }],
-          totalAmount: state.totalAmount + prodPrice
+          totalAmount: parseFloat(state.totalAmount) + parseFloat(prodPrice)
         };
       };
+      
     case REMOVE_FROM_CART:
         const selectedItems = state.items.filter(item => { return item.id === action.productId })
         const otherItems = state.items.filter(item => { return item.id !== action.productId })
@@ -41,11 +44,13 @@ export default (state = initialState, action) => {
 
         if (selectedItems[0].quantity > 1) {
           selectedItems[0].quantity = selectedItems[0].quantity -1
-          const sortarray = [...selectedItems, ...otherItems];
-          sortarray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0);
+          const sortArray = [...selectedItems, ...otherItems];
+
+          // Sort List of Product Listed
+          sortArray.sort((a,b)=>(a.cartIndex > b.cartIndex)?1:(b.cartIndex > a.cartIndex)?-1:0); 
           return {
             ...state,
-            items: sortarray, 
+            items: sortArray, 
             totalAmount: formattedProduct
           };
         } else {
@@ -54,7 +59,12 @@ export default (state = initialState, action) => {
             items: otherItems,
             totalAmount: formattedProduct
           }
-        }
+        };
+
+    case ADD_ORDER:
+      return initialState;
+      
   };
+
   return state;
 };

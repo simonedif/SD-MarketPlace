@@ -34,22 +34,35 @@ const ProductsOverviewScreen = ({ navigation }) => {
             }}
           />
         )}
-    />
-   );
+      />
+  );
 };
 
-export const screenOptions = props => {
+export const screenOptions = ({ navigation }) => {
   return {
     headerTitle: 'Service Desk MarketPlace',
 
     //Header Icon on The Right
+
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={() => {
+            navigation.openDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Cart"
           iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
           onPress={() => {
-            props.navigation.navigate('Cart');
+            navigation.navigate('Cart');
           }}
         />
       </HeaderButtons>
