@@ -3,6 +3,10 @@ import { Text, View, Button, StyleSheet } from 'react-native';
 
 import Colors from '../../constants/Colors';
 
+//CartItem Import For Rendering Items ON Show Details Screen
+
+import CartItem from './CartItem';
+
 const OrderItem = (props) => {
   //Set Button ShowDetails as False (No Show)
   const [ showDetails, SetShowDetails ] = useState(false);
@@ -18,7 +22,13 @@ const OrderItem = (props) => {
           }}
         />  
           {showDetails && <View>
-              <Text>Work In Progress</Text>
+              {props.items.map(cartItem => <CartItem
+                key={cartItem.id}               
+                quantity={cartItem.quantity}
+                amount={cartItem.sum}
+                title={cartItem.productTitle}
+                />
+              )}
             </View> 
           }
     </View>
