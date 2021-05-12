@@ -10,7 +10,7 @@ import cart from '../../store/reducers/cart';
 import * as cartactions from '../../store/action/cart';
 import * as ordersActions from '../../store/action/order';
 
-const CartScreen = (props) => {
+const CartScreen = () => {
    
   //Cart Total use to  render the price on the total
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
@@ -48,6 +48,7 @@ const CartScreen = (props) => {
                 quantity={quantity}
                 title={productTitle}
                 amount={sum * quantity}
+                deleteAction
                 onRemove={() => {
                   dispatch(cartactions.removeCart(id));
                 }}
@@ -57,6 +58,7 @@ const CartScreen = (props) => {
     </View>
   );
 };
+
 
 export const cartOptions = props => {
   return {

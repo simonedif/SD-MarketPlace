@@ -9,8 +9,9 @@ import Colors from '../../constants/Colors';
 //Order Item Component Import
 import OrderItem from '../../components/shop/OrderItem';
 
+//Passing Itmes to be able to re-render into the CartItems screen.
 
-const OrdersScreen = (props) => {
+const OrdersScreen = () => {
   const orders = useSelector(state => state.orders.orders);
     return (
         <FlatList 
@@ -19,6 +20,7 @@ const OrdersScreen = (props) => {
         renderItem={itemData => <OrderItem 
           amount={itemData.item.totalAmount} 
           date={itemData.item.date}
+          items={itemData.item.items}
         />
       }
     />

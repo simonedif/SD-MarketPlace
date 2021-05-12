@@ -4,8 +4,8 @@ import { Text, View, Button, StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
 //CartItem Import For Rendering Items ON Show Details Screen
-
 import CartItem from './CartItem';
+
 
 const OrderItem = (props) => {
   //Set Button ShowDetails as False (No Show)
@@ -17,23 +17,33 @@ const OrderItem = (props) => {
           <Text style={styles.amount} >£{parseFloat(props.amount).toFixed(2)}</Text>
           <Text style={styles.date} >{props.date}</Text>
         </View>
-        <Button color={Colors.primary} title="Show Details"
+        <Button color={Colors.primary} title={showDetails ? "Hide Details" : "Show Details" }
           onPress={() => { SetShowDetails(prevState => !prevState);
           }}
         />  
-          {showDetails && <View>
-              {props.items.map(cartItem => <CartItem
-                key={cartItem.id}               
+        { showDetails && (
+          <View style={styles.details}>
+            {props.items.map(cartItem => (
+              <CartItem
+                key={cartItem.id}
                 quantity={cartItem.quantity}
                 amount={cartItem.sum}
                 title={cartItem.productTitle}
-                />
-              )}
-            </View> 
-          }
+              />
+            ))}
+          </View>
+        )}
     </View>
   );
 };
+
+/*Quick Note For the Above
+Base On The order model - Props get the items from orders array from the State.
+Map Item and render on the screen the Quantity, Amount, Title.
+Remind to Add Always the key props.
+*/
+
+
 
 const styles = StyleSheet.create({
   orderItems: {
@@ -63,6 +73,9 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 16,
     color: '#888'
+  },
+  details: {
+    width: '100%'
   }
 });
 
