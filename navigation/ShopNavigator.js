@@ -12,6 +12,7 @@ import ProductsOverview, { screenOptions } from '../screens/shop/ProductsOvervie
 import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDetails';
 import CartScreen, { cartOptions } from '../screens/shop/CartScreen';
 import OrdersScreen, { ordersScreenOptions } from '../screens/shop/OrdersScreen';
+import UserProductsScreen from '../screens/user/UserProducts';
 
 //Page header standard default configurations
 const defaultNavOptions = {
@@ -51,6 +52,17 @@ export const OrdersNavigator = () => {
   );
 };
 
+//Admin Stack Navigator
+const AdminStackNavigator = createStackNavigator();
+
+export const AdminNavigator = () => {
+  return (
+    <AdminStackNavigator.Navigator screenOptions={defaultNavOptions} >
+      <AdminStackNavigator.Screen name="Admin" component={UserProductsScreen} />
+    </AdminStackNavigator.Navigator>
+  );
+};
+
 //Drawer Navigator configuration
 const ShopDrawerNavigator = createDrawerNavigator();
 
@@ -73,6 +85,19 @@ const ShopDrawerNavigator = createDrawerNavigator();
       <ShopDrawerNavigator.Screen 
         name="Orders" 
         component={OrdersNavigator}
+        options={{
+          drawerIcon: props => (
+            <Ionicons 
+              name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+              size={23}
+              color={props.color}
+            />
+          )
+        }}
+      />
+      <ShopDrawerNavigator.Screen 
+        name="Admin" 
+        component={AdminNavigator}
         options={{
           drawerIcon: props => (
             <Ionicons 

@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './CartItemStyle'
 
 //TouchableOpacity is Warp to be able to use the componenet to a different screen.
+
 const CartItem = (props) => {
     return (
     <View style={styles.cartItem}>
