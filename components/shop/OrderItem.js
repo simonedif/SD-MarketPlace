@@ -24,7 +24,7 @@ const OrderItem = (props) => {
           }}
         />  
         { showDetails && (
-          <View style={styles.details}>
+          <View style={[styles.details,props.style]}>
             {props.items.map(cartItem => (
               <CartItem
                 key={cartItem.id}

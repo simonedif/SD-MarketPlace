@@ -17,7 +17,8 @@ const OrdersScreen = () => {
         <FlatList 
         data={orders}
         keyExtractor={item => item.id}
-        renderItem={itemData => <OrderItem 
+        renderItem={itemData => <OrderItem
+          style={{ width: '50%'}}
           amount={itemData.item.totalAmount} 
           date={itemData.item.date}
           items={itemData.item.items}
