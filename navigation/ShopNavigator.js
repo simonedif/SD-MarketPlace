@@ -101,7 +101,7 @@ const ShopDrawerNavigator = createDrawerNavigator();
         options={{
           drawerIcon: props => (
             <Ionicons 
-              name={Platform.OS === 'android' ? 'md-list' : 'ios-list'}
+              name={Platform.OS === 'android' ? 'md-settings' : 'ios-settings-sharp'}
               size={23}
               color={props.color}
             />

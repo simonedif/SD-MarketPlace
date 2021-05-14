@@ -18,7 +18,7 @@ const OrdersScreen = () => {
         data={orders}
         keyExtractor={item => item.id}
         renderItem={itemData => <OrderItem
-          style={{ width: '50%'}}
+          //style={{ width: '100%'}}
           amount={itemData.item.totalAmount} 
           date={itemData.item.date}
           items={itemData.item.items}
