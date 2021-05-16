@@ -9,8 +9,6 @@ import Colors from '../../constants/Colors';
 //Order Item Component Import
 import OrderItem from '../../components/shop/OrderItem';
 
-//Passing Itmes to be able to re-render into the CartItems screen.
-
 const OrdersScreen = () => {
   const orders = useSelector(state => state.orders.orders);
     return (

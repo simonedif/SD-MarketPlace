@@ -5,6 +5,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 import Colors from '../../constants/Colors'
 
+//REMIND : HeaderButton NO HeaderButtons defines how all icons rendered in children will look. 
+
 const CustomHeaderButton = props => {
     return (
       <HeaderButton 

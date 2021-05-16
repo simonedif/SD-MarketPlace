@@ -10,7 +10,8 @@ import cart from '../../store/reducers/cart';
 import * as cartactions from '../../store/action/cart';
 import * as ordersActions from '../../store/action/order';
 
-const CartScreen = () => {
+
+const CartScreen = ({ navigation }) => {
    
   //Cart Total use to  render the price on the total
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
@@ -31,7 +32,10 @@ const CartScreen = () => {
             title="Order Now" 
             disabled={cartProducts.length === 0 }
             onPress={() => {
-              dispatch(ordersActions.addOrder(cartProducts, cartTotalAmount))
+              dispatch(ordersActions.addOrder(cartProducts, cartTotalAmount));
+              //Navigation to Orders Screen
+              navigation.navigate('Orders')
+              
               //Console.log Testing Items
               console.log(cartTotalAmount);
               console.log(cartProducts);
