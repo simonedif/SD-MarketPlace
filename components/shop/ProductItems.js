@@ -4,14 +4,13 @@ import {
     View, 
     Text, 
     Image,
-    Button, 
     TouchableOpacity, 
     TouchableNativeFeedback, 
     Platform
 } from 'react-native';
 
 //Constants & Style Import
-import Colors from '../../constants/Colors';
+//import Colors from '../../constants/Colors';
 import styles from './ProductStyle';
 
 const ProductItem = (props) => {
@@ -21,11 +20,10 @@ const ProductItem = (props) => {
         TouchableCmp = TouchableNativeFeedback;
     }
  
-// UseForeground Android full View Touch>
     return (      
     <View style={styles.product}>
         <View tyle={styles.touchable}>
-            <TouchableCmp onPress={props.OnViewDetail} useForeground>
+            <TouchableCmp onPress={props.onSelect} useForeground>
                 <View>    
                     <View style={styles.imageContainer}>
                         <Image style={styles.image} source={{uri: props.image}} />
@@ -35,8 +33,7 @@ const ProductItem = (props) => {
                         <Text style={styles.price}>£{props.price.toFixed(2)}</Text>
                     </View>
                     <View style={styles.action}>
-                        <Button color={Colors.primary} title="View Details" onPress={props.OnViewDetail} />
-                        <Button color={Colors.primary} title="To Cart" onPress={props.OnAddToCart} />
+                       {props.children}
                     </View>
                 </View>
             </TouchableCmp>
@@ -46,3 +43,5 @@ const ProductItem = (props) => {
 };
 
 export default ProductItem;
+
+//Note: UseForeground Android full View Touch
