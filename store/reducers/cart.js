@@ -1,6 +1,7 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../action/cart';
 import cartModel from '../../models/cartModel';
 import { ADD_ORDER } from '../action/order';
+import { DELETE_PRODUCT } from '../action/products';
 
 const initialState = {
   items: [],
@@ -60,11 +61,27 @@ export default (state = initialState, action) => {
             totalAmount: formattedProduct
           }
         };
-
     case ADD_ORDER:
       return initialState;
-      
+    
+    case DELETE_PRODUCT: {
+      const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload })
+      const deleteItem = state.items.filter(item => { return item.id !== action.payload })
+        return {
+          ...state,
+          items: [ ...state, ...deleteItem ],
+          totalAmount: 0
+        }
+      }   
   };
 
   return state;
 };
+
+
+// //Delete Function JS  = payload is ProductId
+// const deleteItems = { ...state.items };
+// delete deleteItems[action.payload];
+// return {
+// ...state,
+// items: []

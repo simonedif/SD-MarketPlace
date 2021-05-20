@@ -25,7 +25,8 @@ const defaultNavOptions = {
   headerBackTitleStyle: {
     fontFamily: 'open-sans'
   },
-  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primary,
+  
 };
 
 //Main Product Stack Navigator
