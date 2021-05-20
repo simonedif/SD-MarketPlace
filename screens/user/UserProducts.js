@@ -40,6 +40,7 @@ const UserProductsScreen = (props) => {
             title="Delete" 
             onPress={() => {
             dispatch(productsActions.deleteProduct(itemData.item.id));
+            console.log(itemData.item.id)
             }} 
           />
         </ProductItem>

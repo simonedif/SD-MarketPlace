@@ -61,17 +61,19 @@ export default (state = initialState, action) => {
             totalAmount: formattedProduct
           }
         };
-    case ADD_ORDER:
+
+      case ADD_ORDER:
       return initialState;
     
     case DELETE_PRODUCT: {
-      const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload })
-      const deleteItem = state.items.filter(item => { return item.id !== action.payload })
-        return {
-          ...state,
-          items: [ ...state, ...deleteItem ],
-          totalAmount: 0
-        }
+      const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload });
+      console.log(itemToBeDeleted);
+      // const deleteItem = state.items.filter(item => { return item.id !== action.payload })
+        // return {
+        //   ...state,
+        //   items: [ ...state, ...deleteItem ],
+        //   totalAmount: 0
+        // }
       }   
   };
 
