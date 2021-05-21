@@ -66,24 +66,16 @@ export default (state = initialState, action) => {
       return initialState;
     
     case DELETE_PRODUCT: {
-      const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload });
-      console.log(itemToBeDeleted);
-      // const deleteItem = state.items.filter(item => { return item.id !== action.payload })
-        // return {
-        //   ...state,
-        //   items: [ ...state, ...deleteItem ],
-        //   totalAmount: 0
-        // }
-      }   
+      const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload })
+        console.log(itemToBeDeleted);
+      const deleteItem = state.items.filter(item => { return item.id !== action.payload })
+      const totalAmountAdjst = (state.totalAmount - itemToBeDeleted[0].productPrice * itemToBeDeleted[0].quantity).toFixed(2);
+      return {
+        ...state,
+        items: deleteItem,
+        totalAmount: totalAmountAdjst
+      }
+    }   
   };
-
   return state;
 };
-
-
-// //Delete Function JS  = payload is ProductId
-// const deleteItems = { ...state.items };
-// delete deleteItems[action.payload];
-// return {
-// ...state,
-// items: []
