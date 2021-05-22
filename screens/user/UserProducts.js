@@ -14,9 +14,13 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/action/products';
 
 
-const UserProductsScreen = (props) => {
+const UserProductsScreen = ({ navigation }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   const dispatch = useDispatch();
+
+  const editProductHandler = (id) => {
+    navigation.navigate('Edit', {productId: id});
+  };
 
   return (
     <FlatList
@@ -26,13 +30,15 @@ const UserProductsScreen = (props) => {
         image={itemData.item.imageUrl}
         title={itemData.item.title}
         price={itemData.item.price}
-        onSelect={() => {}}
+        onSelect={() => {
+          editProductHandler(itemData.item.id);
+        }}
         >
         <Button 
           color={Colors.primary} 
           title="Edit" 
           onPress={() => {
-            //Waiting Function
+            editProductHandler(itemData.item.id);
               }} 
             />
           <Button 
