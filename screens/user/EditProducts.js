@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const EditProductScreen = (props) => {
+
+
   return (
-    <View>
-      <Text>Test Screen</Text>
-    </View>
+    <ScrollView>
+      <View>
+        <Text>Title</Text>
+        <TextInput />
+      </View>
+    </ScrollView>
   )
 };
 

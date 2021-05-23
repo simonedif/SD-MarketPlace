@@ -69,7 +69,20 @@ export const UserProductsOptions = ({ navigation }) => {
           }}
         />
       </HeaderButtons>
-    )
+    ),
+
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Add"
+          iconName={Platform.OS === 'android' ? 'md-create' : 'ios-create'}
+          onPress={() => {
+            navigation.navigate('Edit');
+          }}
+        />
+      </HeaderButtons>
+    ),
+
   };
 };
 
