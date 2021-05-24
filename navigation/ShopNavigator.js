@@ -13,7 +13,7 @@ import ProductsDetails, { screenDetailsOptions } from '../screens/shop/ProductDe
 import CartScreen, { cartOptions } from '../screens/shop/CartScreen';
 import OrdersScreen, { ordersScreenOptions } from '../screens/shop/OrdersScreen';
 import UserProductsScreen, { UserProductsOptions } from '../screens/user/UserProducts';
-import EditProductScreen from '../screens/user/EditProducts';
+import EditProductScreen, { EditProductScreenOption } from '../screens/user/EditProducts';
 
 //Page header standard default configurations
 const defaultNavOptions = {
@@ -61,7 +61,7 @@ export const AdminNavigator = () => {
   return (
     <AdminStackNavigator.Navigator screenOptions={defaultNavOptions} >
       <AdminStackNavigator.Screen name="Admin" component={UserProductsScreen} options={UserProductsOptions} />
-      <AdminStackNavigator.Screen name="Edit" component={EditProductScreen} />
+      <AdminStackNavigator.Screen name="Edit" component={EditProductScreen} options={EditProductScreenOption} />
     </AdminStackNavigator.Navigator>
   );
 };
