@@ -7,10 +7,11 @@ import { useSelector } from 'react-redux';
 //Header Button UI
 import HeaderButton from '../../components/UI/HeaderButton';
 
-const EditProductScreen = ( props ) => {
+const EditProductScreen = ({ navigation, route }) => {
 
   //Get the Item id passed with params
-  const prodId = props.route.params.productId;
+  const prodId = route.params.productId;
+  console.log(prodId)
 
   //If items id === to prodId then 'Edit'
   const editedProduct = useSelector(state => state.products.userProducts.find(prod => prod.id === prodId));
@@ -22,12 +23,12 @@ const EditProductScreen = ( props ) => {
 
   //usecallback to prevent the app to go in infinite loop.
   const handler = useCallback(() => {
-    console.log('Sub')
-  }, []);
+      console.log('Sub');
+    }, []);
 
   //Passing Params
   useEffect(() => {
-    props.navigation.navigate({ submit: handler})
+    navigation.setParams({ submit: handler })
   }, [handler]);
 
   //Price can not be edit so we are not dispay only when we are on Add Product Mode
@@ -76,6 +77,7 @@ Product id = id then Edit Product : ADD Products
 //submifn has been passed from useEffect
 export const EditProductScreenOption = ({ route }) => {
   const submitFn = route.params.submit;
+
   return {
     headerTitle: route.params.productId 
     ? 'Edit Product' 

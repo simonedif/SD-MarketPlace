@@ -26,7 +26,7 @@ const CartScreen = ({ navigation }) => {
     <View style={styles.screen} >
        <View style={styles.summary} >
           <View style={styles.summaryText} >
-            <Text style={styles.amount}>Total: <Text>£{cartTotalAmount.toFixed}</Text></Text>
+            <Text style={styles.amount}>Total: <Text>£{cartTotalAmount.toFixed(2)}</Text></Text>
            </View>
           <Button 
             title="Order Now" 
