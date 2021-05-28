@@ -11,6 +11,8 @@ const EditProductScreen = ({ navigation, route }) => {
 
   //Get the Item id passed with params
   const prodId = route.params.productId;
+  const handleSubmit = () => console.log('Test')
+
   console.log(prodId)
 
   //If items id === to prodId then 'Edit'
@@ -21,15 +23,26 @@ const EditProductScreen = ({ navigation, route }) => {
   const [ price, setPrice ] = useState(editedProduct ? editedProduct.price : '' );
   const [ description, setDescription ] = useState(editedProduct ? editedProduct.description : '' );
 
-  //usecallback to prevent the app to go in infinite loop.
-  const handler = useCallback(() => {
-      console.log('Sub');
-    }, []);
+  //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
 
-  //Passing Params
-  useEffect(() => {
-    navigation.setParams({ submit: handler })
-  }, [handler]);
+  useEffect(() =>{
+    navigation.setOptions({
+      headerTitle: route.params.productId 
+    ? 'Edit Product' 
+    : 'Add Product',
+    
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Save"
+          iconName={Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'}
+          onPress={handleSubmit}
+        />
+      </HeaderButtons>
+    ),
+  }
+    )
+  }, []);
 
   //Price can not be edit so we are not dispay only when we are on Add Product Mode
   return (
@@ -70,30 +83,6 @@ const EditProductScreen = ({ navigation, route }) => {
   )
 };
 
-/*ProductId has been pass from UserProductScreen - If
-Product id = id then Edit Product : ADD Products
-*/
-
-//submifn has been passed from useEffect
-export const EditProductScreenOption = ({ route }) => {
-  const submitFn = route.params.submit;
-
-  return {
-    headerTitle: route.params.productId 
-    ? 'Edit Product' 
-    : 'Add Product',
-    
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="Save"
-          iconName={Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'}
-          onPress={submitFn}
-        />
-      </HeaderButtons>
-    ),
-  };
-};
 
 const styles = StyleSheet.create({
   main: {

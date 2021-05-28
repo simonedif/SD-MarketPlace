@@ -17,7 +17,6 @@ import * as productsActions from '../../store/action/products';
 const UserProductsScreen = ({ navigation }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   const dispatch = useDispatch();
-
   const editProductHandler = (id) => {
     navigation.navigate('Edit', {productId: id});
   };

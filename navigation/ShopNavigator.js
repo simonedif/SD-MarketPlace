@@ -61,7 +61,7 @@ export const AdminNavigator = () => {
   return (
     <AdminStackNavigator.Navigator screenOptions={defaultNavOptions} >
       <AdminStackNavigator.Screen name="Admin" component={UserProductsScreen} options={UserProductsOptions} />
-      <AdminStackNavigator.Screen name="Edit" component={EditProductScreen} options={EditProductScreenOption} />
+      <AdminStackNavigator.Screen name="Edit" component={EditProductScreen} />
     </AdminStackNavigator.Navigator>
   );
 };

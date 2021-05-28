@@ -67,15 +67,18 @@ export default (state = initialState, action) => {
     
     case DELETE_PRODUCT: {
       const itemToBeDeleted = state.items.filter(item => { return item.id === action.payload })
-        console.log(itemToBeDeleted);
-      const deleteItem = state.items.filter(item => { return item.id !== action.payload })
-      const totalAmountAdjst = (state.totalAmount - itemToBeDeleted[0].productPrice * itemToBeDeleted[0].quantity).toFixed(2);
+      console.log(itemToBeDeleted);
+        if ( itemToBeDeleted.length ) {
+      const remainItem = state.items.filter(item => { return item.id !== action.payload })
+      const totalAmountAdjst = (state.totalAmount - itemToBeDeleted[0].productPrice * itemToBeDeleted[0].quantity).toFixed(2)
+        
       return {
         ...state,
-        items: deleteItem,
+        items: remainItem,
         totalAmount: totalAmountAdjst
       }
     }   
+  }
   };
   return state;
 };
