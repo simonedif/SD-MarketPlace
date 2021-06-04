@@ -44,6 +44,11 @@ const EditProductScreen = ({ navigation, route }) => {
 
   //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
   useEffect(() => {
+    const handleSubmit = () => {
+      dispatch(productsActions.updateProduct(prodId, title, description, imageUrl))
+    };
+  
+
     navigation.setOptions({
       headerTitle: route.params.productId 
     ? 'Edit Product' 
