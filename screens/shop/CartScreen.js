@@ -21,12 +21,13 @@ const CartScreen = ({ navigation }) => {
      
   //Import Dispatch function
   const dispatch = useDispatch();
-      
+  
+  // && cartTotalAmount.toFixed(2) BUG to be add on Line 30
   return (
     <View style={styles.screen} >
        <View style={styles.summary} >
           <View style={styles.summaryText} >
-            <Text style={styles.amount}>Total: <Text>£{cartTotalAmount && cartTotalAmount.toFixed(2)}</Text></Text>
+            <Text style={styles.amount}>Total: <Text>£{cartTotalAmount}</Text></Text>  
            </View>
           <Button 
             title="Order Now" 

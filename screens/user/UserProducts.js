@@ -70,7 +70,7 @@ export const UserProductsOptions = ({ navigation }) => {
       </HeaderButtons>
     ),
 
-    headerRight: () => (
+    headerRight: ({ navigation }) => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Add"

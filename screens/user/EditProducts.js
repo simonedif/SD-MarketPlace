@@ -2,30 +2,48 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, TextInput, StyleSheet, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //Header Button UI
 import HeaderButton from '../../components/UI/HeaderButton';
 
-const EditProductScreen = ({ navigation, route }) => {
+//Import The Redux ProductAction
+import * as productsActions from '../../store/action/products';
 
+
+const EditProductScreen = ({ navigation, route }) => {
+  
   //Get the Item id passed with params
   const prodId = route.params.productId;
-  const handleSubmit = () => console.log('Test')
-
+  
   console.log(prodId)
 
   //If items id === to prodId then 'Edit'
   const editedProduct = useSelector(state => state.products.userProducts.find(prod => prod.id === prodId));
+
+  // Discpatch Action
+  const dispatch = useDispatch();
 
   const [ title, setTitle ] = useState(editedProduct ? editedProduct.title : '' );
   const [ imageUrl, setimageUrl ] = useState(editedProduct ? editedProduct.imageUrl : '' );
   const [ price, setPrice ] = useState(editedProduct ? editedProduct.price : '' );
   const [ description, setDescription ] = useState(editedProduct ? editedProduct.description : '' );
 
-  //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
+  //Submit Handler 
+  const handleSubmit = () => {
+    if (editedProduct) {
+      dispatch(
+        productsActions.updateProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        productsActions.createProduct(title, description, imageUrl, price)
+      );
+    }
+  };
 
-  useEffect(() =>{
+  //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
+  useEffect(() => {
     navigation.setOptions({
       headerTitle: route.params.productId 
     ? 'Edit Product' 
