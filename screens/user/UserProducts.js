@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, Platform, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useNavigation } from "@react-navigation/native";
 
 import ProductItem from '../../components/shop/ProductItems';
 import Colors from '../../constants/Colors';
@@ -54,7 +55,11 @@ const UserProductsScreen = ({ navigation }) => {
   );
 };
 
-export const UserProductsOptions = ({ navigation }) => {
+
+export const UserProductsOptions = () => {
+
+  const navigation = useNavigation();
+  
   return {
     headerTitle: 'Items Avaiable For SD Team',
 
@@ -70,7 +75,7 @@ export const UserProductsOptions = ({ navigation }) => {
       </HeaderButtons>
     ),
 
-    headerRight: ({ navigation }) => (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Add"

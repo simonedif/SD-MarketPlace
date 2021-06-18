@@ -34,7 +34,8 @@ export default (state = initialState, action) => {
       const productIndex = state.userProducts.findIndex(
         prod => prod.id === action.payloadUpdateProduct
       );
-
+      
+      
       const updatedProduct = new Product(
         //Note: action.payloadUpdateProduct is the "ID"
         action.payloadUpdateProduct,

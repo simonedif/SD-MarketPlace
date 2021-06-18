@@ -14,7 +14,7 @@ import * as productsActions from '../../store/action/products';
 const EditProductScreen = ({ navigation, route }) => {
   
   //Get the Item id passed with params
-  const prodId = route.params.productId;
+  const prodId = route.params?.productId;
   
   console.log(prodId)
 
@@ -45,12 +45,16 @@ const EditProductScreen = ({ navigation, route }) => {
   //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
   useEffect(() => {
     const handleSubmit = () => {
-      dispatch(productsActions.updateProduct(prodId, title, description, imageUrl))
+      if (route.params?.productId) {
+        dispatch(productsActions.updateProduct(prodId, title, description, imageUrl))
+      } else {
+        dispatch(
+          productsActions.createProduct(title, description, imageUrl, price))
+      };
     };
   
-
     navigation.setOptions({
-      headerTitle: route.params.productId 
+      headerTitle: route.params?.productId
     ? 'Edit Product' 
     : 'Add Product',
     
