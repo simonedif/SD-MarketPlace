@@ -30,9 +30,11 @@ export default (state = initialState, action) => {
         userProducts: state.userProducts.concat(newProduct),
       };
 
+      //Update productIndex action.payloadUpdateProduct.id
+      
     case UPDATE_PRODUCT:
       const productIndex = state.userProducts.findIndex(
-        prod => prod.id === action.payloadUpdateProduct
+        prod => prod.id === action.payloadUpdateProduct.id
       );
       
       
@@ -40,9 +42,9 @@ export default (state = initialState, action) => {
         //Note: action.payloadUpdateProduct is the "ID"
         action.payloadUpdateProduct,
         state.userProducts[productIndex].ownerId,
-        action.payloadProductData.title,
-        action.payloadProductData.imageUrl,
-        action.payloadProductData.description,
+        action.payloadUpdateProduct.title,
+        action.payloadUpdateProduct.imageUrl,
+        action.payloadUpdateProduct.description,
         state.userProducts[productIndex].price,
       );
 
