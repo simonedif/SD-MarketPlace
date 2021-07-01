@@ -30,6 +30,9 @@ const EditProductScreen = ({ navigation, route }) => {
   const [ description, setDescription ] = useState(editedProduct ? editedProduct.description : '' );
 
   //Submit Handler 
+  //Edit Screen - Price not Required
+  //Creat New product - Price require to be Entered
+
   const handleSubmit = () => {
     if (editedProduct) {
       dispatch(
@@ -72,6 +75,7 @@ const EditProductScreen = ({ navigation, route }) => {
   }, []);
 
   //Price can not be edit so we are not dispay only when we are on Add Product Mode
+
   return (
     <ScrollView>
       <View style={styles.main} >

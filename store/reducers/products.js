@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
         action.payloadUpdateProduct.title,
         action.payloadUpdateProduct.imageUrl,
         action.payloadUpdateProduct.description,
-        state.userProducts[productIndex].price,
+        //state.userProducts[productIndex].price,
       );
 
       const updatedUserProducts = [...state.userProducts];
