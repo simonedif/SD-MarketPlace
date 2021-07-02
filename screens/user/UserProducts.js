@@ -38,7 +38,7 @@ const UserProductsScreen = ({ navigation }) => {
   return (
     <FlatList
       data={userProducts}
-      keyExtractor={item => item.id}
+      keyExtractor={(item,index) => `${item.id}-${index}`}
       renderItem={itemData => <ProductItem 
         image={itemData.item.imageUrl}
         title={itemData.item.title}

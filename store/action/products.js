@@ -18,14 +18,15 @@ export const createProduct = (title, description, imageURL, price) => {
   };
 };
 
-export const updateProduct = (id, title, description, imageURL ) => {
+export const updateProduct = (id, title, description, imageURL, price ) => {
   return {
     type: UPDATE_PRODUCT,
     payloadUpdateProduct: {
       id,
       title,
       description,
-      imageURL
-    },
+      imageURL,
+      price
+    }
   };
 };

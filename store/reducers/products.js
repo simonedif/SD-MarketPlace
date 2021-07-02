@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PRODUCT:
       const newProduct = new Product(
-        new Date().toString,
+        (new Date()).toString(),
         "u1",
         action.payloadProductData.title,
         action.payloadProductData.imageUrl,
@@ -41,11 +41,12 @@ export default (state = initialState, action) => {
       const updatedProduct = new Product(
         //Note: action.payloadUpdateProduct is the "ID"
         action.payloadUpdateProduct,
-        state.userProducts[productIndex].ownerId,
+        //state.userProducts[productIndex].ownerId,
+        'u1',
         action.payloadUpdateProduct.title,
-        action.payloadUpdateProduct.imageUrl,
+        action.payloadUpdateProduct.imageURL,
         action.payloadUpdateProduct.description,
-        //state.userProducts[productIndex].price,
+        action.payloadUpdateProduct.price,
       );
 
       const updatedUserProducts = [...state.userProducts];

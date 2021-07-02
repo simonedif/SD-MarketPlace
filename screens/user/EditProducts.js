@@ -33,29 +33,32 @@ const EditProductScreen = ({ navigation, route }) => {
   //Edit Screen - Price not Required
   //Creat New product - Price require to be Entered
 
+  // const handleSubmit = () => {
+  //   if (editedProduct) {
+  //     dispatch(
+  //       productsActions.updateProduct(prodId, title, description, imageUrl)
+  //     );
+  //   } else {
+  //     dispatch(
+  //       productsActions.createProduct(title, description, imageUrl, price)
+  //     );
+  //   }
+  // };
+
   const handleSubmit = () => {
-    if (editedProduct) {
-      dispatch(
-        productsActions.updateProduct(prodId, title, description, imageUrl)
-      );
+    if (route.params?.productId) {
+      dispatch(productsActions.updateProduct(prodId, title, description, imageUrl, price))
+      console.log(title)
+      navigation.goBack()
     } else {
       dispatch(
-        productsActions.createProduct(title, description, imageUrl, price)
-      );
-    }
+        productsActions.createProduct(title, description, imageUrl, price))
+        navigation.goBack()
+    };
   };
 
   //Set header Option Directly Inside the Edit product Screens to Avoid Passing params across many Screens
   useEffect(() => {
-    const handleSubmit = () => {
-      if (route.params?.productId) {
-        dispatch(productsActions.updateProduct(prodId, title, description, imageUrl))
-      } else {
-        dispatch(
-          productsActions.createProduct(title, description, imageUrl, price))
-      };
-    };
-  
     navigation.setOptions({
       headerTitle: route.params?.productId
     ? 'Edit Product' 
@@ -72,7 +75,7 @@ const EditProductScreen = ({ navigation, route }) => {
     ),
   }
     )
-  }, []);
+  }, [handleSubmit]);
 
   //Price can not be edit so we are not dispay only when we are on Add Product Mode
 
@@ -97,7 +100,7 @@ const EditProductScreen = ({ navigation, route }) => {
         { editedProduct ? null : <View style={styles.mainProduct} >
           <Text style={styles.label} >Price</Text>
           <TextInput style={styles.input} 
-            value={price}
+            value={price.toString()}
             onChangeText={price => setPrice(price)}
           />
         </View> }
